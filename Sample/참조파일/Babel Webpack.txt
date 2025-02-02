@@ -1,0 +1,105 @@
+Babel 작업 설정
+  https://babeljs.io/
+
+  1. package.json 파일 생성
+    npm init -y
+
+  2. babel 모듈 설치 v7
+    1] 공통 모듈
+      npm i -D @babel/core @babel/cli
+
+    2] ES5로 변환 모듈
+      npm i -D @babel/preset-env
+
+    3] 변환
+      npx babel src/A01Arrow.js -d dist
+      npx babel src/A01Arrow.js -d dist --presets @babel/preset-env
+
+      - 전체 파일 변환
+      npx babel src -d dist
+      npx babel src -d dist --presets @babel/preset-env
+
+  3. .babelrc 파일 작성
+    1] .babelrc 라는 이름으로 새로운 파일 작성
+    2] 작성한 '.babelrc' 파일에 다음을 기술
+      {
+        "presets": [
+          "@babel/preset-env"
+        ],
+        "plugins": [ ]
+      }
+
+    3] 변환
+      --presets @babel/preset-env 생략해도 .babelrc 설정에 의해 ES5로 변경된다
+
+      npx babel src -d dist
+
+  4. babel plugin은 필요에 따라 설치
+    https://babeljs.io/docs/plugins-list 
+
+    npm i -D @babel/runtime
+    npm i -D @babel/plugin-transform-arrow-functions
+
+  5. .babelrc 파일에 plugin 추가
+    https://babeljs.io/docs/usage
+
+    1] 작성된 '.babelrc' 파일에 다음을 기술
+      {
+        "presets": [
+          "@babel/preset-env"
+        ],
+        "plugins": [
+          필요에 따라 등록한다 
+          "@babel/plugin-transform-arrow-functions",
+          ...
+        ]
+      }
+
+  6. npm script
+
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "build": "babel src -d dist"
+    },        
+
+
+
+Webpack 설정
+  1. 설치
+    npm i -D webpack webpack-cli
+
+  2. 설정 파일 작성
+    npx webpack-cli init
+
+    추가 모듈 설치가 필요하다는 메시지가 출력되면 설치한다.
+    
+    1. Which of the following JS solutions do you want to use? (Use arrow keys)
+      어떤 솔루션을 사용할 것인가?                                            [ ES6 ]
+
+    2. Do you want to use webpack-dev-server? (Y/n)
+      개발 서버를 사용할 것인가? (live-server와 같은 환경을 구축해 줄까)        [ Y ]
+
+    3. Do you want to simplify the creation of HTML files for your bundle? (Y/n)
+      간단한 번들용 HTML 파일을 생성할 것인가?                                 [ Y ]
+
+    4. Do you want to add PWA support? (Y/n)
+      PWA 지원을 추가 할 것인가?                                              [ N ]
+
+    5. Which of the following CSS solutions do you want to use? (Use arrow keys)
+      어떤 CSS 솔루션을 사용할 것인가?                                        [ CSS Only ]
+
+    6. Will you be using PostCSS in your project? (Y/n)
+      프로젝트에서 PostCSS를 사용할 예정인가?                                 [ N ]
+
+    7. Do you want to extract CSS for every file? (Use arrow keys)
+      모든 파일에서 CSS를 추출할 것인가(별로 파일로 추출할 것인가)?             [ Y ]
+
+    8. Do you like to install prettier to format generated configuration? (Y/n)
+      생성된 구성 포맷을 위해 Prettier를 설치할 것인가?                       [ Y ]
+
+    9. Pick a package manager: (Use arrow keys)
+      패키지 관리자 선택                                                    [ NPM ]
+
+
+  package.json 파일의 script 항목에 실행 명령이 존재한다
+  
