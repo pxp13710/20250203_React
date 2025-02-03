@@ -78,3 +78,23 @@ arr = [10, 11, 100, 101, 1000];
 let total = 0;
 arr.forEach(item => (total = total + item));
 console.log(total);
+console.log('');
+
+// map => 요소를 순환해서 반환된 값으로 새로운 배열을 생성 (기존배열은 변경 없음 - 불변성)
+// 리엑트에서 요소 변경에 사용
+const makeNewArray = (i, value) => {
+  return arr.map((item, idx) => (i === idx ? value : item));
+};
+const mapArr = makeNewArray(1, 3000);
+console.log(mapArr);
+console.log(arr);
+console.log('');
+
+// filter => 요소를 순환해서 반환값이 true인 요소의 값만을 이용해 새로운 배열 생성 (기존배열은 변경 없음 - 불변성)
+// 리엑트에서 배열 요소 삭제에 사용
+const fiterArray = i => {
+  return arr.filter((item, idx) => i !== idx);
+};
+const filterArr = fiterArray(1);
+console.log(filterArr);
+console.log(arr);
