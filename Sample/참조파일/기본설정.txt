@@ -28,7 +28,7 @@
   React               https://ko.legacy.reactjs.org/
   Redux               https://ko.redux.js.org/introduction/getting-started
       
-
+ 
 4. VSCode 기본 설정 - File - Preferences - settings
   1. Auto Save
     => onFocusChange
@@ -39,9 +39,8 @@
     => Prettier 플러그인 설치 후는 pretter로 설정
   4. Format on Save
     => check
-  5. Compact Folders
+  5. Compact Folders 
     => check 해제
-
 
 5. 자주 사용하는 명령 단축 실행
   View => Command Palette(ctrl + shift + p)
