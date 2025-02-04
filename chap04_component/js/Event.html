@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .orange {
+      color: orange;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <h1>JavaScript Event</h1>
+
+    <button name="button 01" onclick="alert('Good Morning!!!')">Btn 01</button>
+    <button name="button 02" onclick="btn02Event()">Btn 02</button>
+    <button name="button 03" id="btn03" onclick="btn03Event(event)">Btn 03</button>
+
+    <button name="button 04" id="btn04">Btn 04</button>
+    <button name="button 05" id="btn05">Btn 05</button>
+    <button name="button 06" id="btn06">Btn 06</button>
+    <button name="button 07" id="btn07">Btn 07</button>
+    <button name="button 08" id="btn08">Btn 08</button>
+  </div>
+
+  <script type="text/javascript">
+    const btn02Event = () => {
+      alert('Good Afternoon!!!');
+    }
+    const btn03Event = (evt) => {
+      console.log(evt.target);
+      console.log(evt.target.id)
+    }
+
+    document.getElementById('btn04').addEventListener('click', () => {
+      alert('Good Afternoon!!!');
+    });
+
+    const btn05Event = () => {
+      alert('Good Evening!!!');
+      return undefined
+    }
+    // 이벤트 핸들러를 값으로 취급. ()를 치면 즉각 실행되고 반환값 undefined로 대체된다
+    document.getElementById('btn05').addEventListener('click', btn05Event);
+
+    const btn06Event = (evt) => {
+      evt.target.className = 'orange'
+    }
+    // 이벤트객체는 특별히 전달하지 않아도 암묵적으로 전달된다
+    // 이벤트 핸들러에 매개변수가 event 객체 1개만 존재하는 경우도 () 안친다
+    document.getElementById('btn06').addEventListener('click', btn06Event);
+
+    const btn07Event = (cnt) => {
+      console.log(cnt)
+      document.getElementById('btn07').textContent = cnt;
+    }
+    // 이벤트 핸들러에 매개변수는 오로지 1개 이벤트 객체만 전달한다
+    document.getElementById('btn07').addEventListener('click', () => btn07Event(5));
+
+    const btn08Event = (evt, cnt) => {
+      console.log(cnt)
+      evt.target.textContent = cnt;
+    }
+    // 이벤트 핸들러에 매개변수는 오로지 1개 이벤트 객체만 전달한다
+    document.getElementById('btn08').addEventListener('click', (evt) => btn08Event(evt, 5));
+  </script>
+</body>
+
+</html>
