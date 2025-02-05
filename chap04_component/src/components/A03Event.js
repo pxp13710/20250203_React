@@ -2,21 +2,21 @@ import React, { useState } from 'react'
 
 function A03Event() {
   const [data, setData] = useState({
-    name: 'A',
+    name: '',
     address: '',
     age: '',
     date: '2024-12-25',
     sports: 'baseball',
     isChecked: true,
-    files: '',
+    files: {},
     language: ['React', 'Vue'],
     baseball: '엘지',
-    four: [],
+    four: ['엘지', '두산'],
   });
 
   const changeString = (evt) => {
     // console.log(evt.target.name, evt.target.value)
-    if (evt.target.value.trim().length >= 2) {
+    if (evt.target.value.trim().length <= 5) {          // 5글자까지만 입력
       const newData = { ...data, [evt.target.name]: evt.target.value };
       setData(newData);
     }
@@ -49,11 +49,39 @@ function A03Event() {
     }
   }
 
+  const changeFile = (evt) => {
+    const files = evt.target.files;
+    // console.log(files);
+    const newFiles = { name: files[0].name, size: files[0].size, type: files[0].type };
+
+    // const newData = { ...data, files: files[0].name };
+    const newData = { ...data, files: newFiles };
+    setData(newData);
+  }
+
+  const changeSelect = (evt) => {
+    const elems = evt.target.selectedOptions;   // 유사배열
+    const arr = Array.from(elems);
+
+    const newFour = arr.map(elem => elem.value);
+    const newData = { ...data, four: newFour };
+    setData(newData);
+  }
+
+
   const sendData = (evt) => {
     // DOM 요소가 가지고 있는 기본 동작 자바스크립트를 취소
     evt.preventDefault();
 
-    console.log(data);    // 서버에 전송
+    // console.log(data);    // 서버에 전송
+
+    // JavaScript 객체를 JSON 값으로 변경
+    const jsonData = JSON.stringify(data);
+    console.log(jsonData);
+
+    // JSON 값을 JavaScript 객체로 변경
+    const jsData = JSON.parse(jsonData);
+    console.log(jsData);
   };
 
   return (
@@ -135,8 +163,9 @@ function A03Event() {
         </div>
 
         <div className="mb-3">
-          <label htmlFor="file" className="form-label">File: {data.files}</label>
-          <input type="file" className="form-control" id="file" name="file" multiple />
+          <label htmlFor="file" className="form-label">File: {data.files.name || 'unknown'}</label>
+          <input type="file" className="form-control" id="file" name="file" multiple
+            onChange={changeFile} />
         </div>
 
         <div className="mb-3">
@@ -155,7 +184,8 @@ function A03Event() {
 
         <div className="mb-3">
           SelectBox Multi: {data.four.join(', ')}<br />
-          <select name="four" multiple size="5" className="form-control mb-2">
+          <select name="four" multiple size="5" className="form-control mb-2"
+            onChange={changeSelect} value={data.four}>
             <option>한화</option>
             <option>NC</option>
             <option>두산</option>
