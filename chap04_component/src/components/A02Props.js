@@ -7,7 +7,7 @@ function A02Props(props) {
   // props 값은 읽기 전용(immutable) 값이다. 즉 자식 컴포넌트에서 수정 불가
   // console.log(props);
   const { className = 'btn', type, age = 0, check, arr = [], user = {}, onAdd = () => { },
-    setAge = () => { }, addArray = () => { },
+    setAge = () => { }, addArray = () => { }, // children
   } = props;
 
   const getToday = () => {
@@ -25,6 +25,10 @@ function A02Props(props) {
   return (
     <div className="mb-5">
       <h3>A02Props</h3>
+
+      <div className="mb-3">
+        {props.children}
+      </div>
 
       <div className="mb-3">
         <button className={className}>ClassName</button> <br />

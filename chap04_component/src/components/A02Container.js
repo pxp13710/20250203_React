@@ -2,6 +2,8 @@
 import React, { useState } from 'react'
 import A02Props from './A02Props'
 
+import A01State from './A01State'
+
 /*
   package.json => 프로젝트 전체에 반영됨 (하지말자)
 
@@ -48,12 +50,24 @@ function A02Container() {
           부모의 함수 실행 => getter 수정 => 리 렌더링 => 자식 리 렌더링
       */}
       <A02Props className="btn btn-primary" type="date" age={10} check={true} arr={array}
-        user={{ name: 'A', age: 1 }} onAdd={onAdd} setAge={setAge} addArray={addArray}></A02Props>
+        user={{ name: 'A', age: 1 }} onAdd={onAdd} setAge={setAge} addArray={addArray}>
+        <>
+          <h5>부모가 전달한 View: {age}</h5>
+          <div>Hello World - 자식 컴포넌트의 props.children 위치에 표시된다</div>
+        </>
+      </A02Props>
 
       <A02Props className="btn btn-danger" type="time" age={age} check arr={array}
-        user={user} onAdd={onAdd} setAge={setAge} addArray={addArray}></A02Props>
+        user={user} onAdd={onAdd} setAge={setAge} addArray={addArray}>
+        <>
+          <img src="images/machu.jpg" alt="machu" />
+        </>
+      </A02Props>
 
-      <A02Props></A02Props>
+      <A02Props>
+        {/* 자신의 상태변수 등을 값으로 전달 가능 */}
+        <A01State type="time" />
+      </A02Props>
     </>
   )
 }
