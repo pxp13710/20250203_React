@@ -6,6 +6,7 @@
     padding: 20px;
 }
 
-.innerColor {
+/* hash가 붙지 않는 일반 클래스가 된다 */
+:global .innerColor {
     color: orange;
 }
