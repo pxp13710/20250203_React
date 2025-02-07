@@ -20,9 +20,9 @@ function App() {
           <Route index element={<Home />} />
           <Route path="/axios" element={<Axios />} />
           <Route path="/contactList" element={<GetContactList />} />
-          <Route path="/contact" element={<GetContact />} />
+          <Route path="/contact/:no" element={<GetContact />} />
           <Route path="/addContact" element={<AddContact />} />
-          <Route path="/updateContact" element={<UpdateContact />} />
+          <Route path="/updateContact/:no" element={<UpdateContact />} />
           <Route path="*" element={<h3>Not Found</h3>} />
         </Route>
       </Routes>
